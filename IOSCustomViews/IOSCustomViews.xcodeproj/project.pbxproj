@@ -12,7 +12,6 @@
 		3CCCCD481E557C7B00B0009A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CCCCD471E557C7B00B0009A /* ViewController.m */; };
 		3CCCCD4B1E557C7B00B0009A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CCCCD491E557C7B00B0009A /* Main.storyboard */; };
 		3CCCCD4D1E557C7B00B0009A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CCCCD4C1E557C7B00B0009A /* Assets.xcassets */; };
-		3CCCCD501E557C7B00B0009A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CCCCD4E1E557C7B00B0009A /* LaunchScreen.storyboard */; };
 		3CCCCD5B1E557C7B00B0009A /* IOSCustomViewsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CCCCD5A1E557C7B00B0009A /* IOSCustomViewsTests.m */; };
 		3CCCCD661E557C7B00B0009A /* IOSCustomViewsUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CCCCD651E557C7B00B0009A /* IOSCustomViewsUITests.m */; };
 /* End PBXBuildFile section */
@@ -43,7 +42,6 @@
 		3CCCCD471E557C7B00B0009A /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		3CCCCD4A1E557C7B00B0009A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3CCCCD4C1E557C7B00B0009A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		3CCCCD4F1E557C7B00B0009A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3CCCCD511E557C7B00B0009A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3CCCCD561E557C7B00B0009A /* IOSCustomViewsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IOSCustomViewsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CCCCD5A1E557C7B00B0009A /* IOSCustomViewsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IOSCustomViewsTests.m; sourceTree = "<group>"; };
@@ -107,7 +105,6 @@
 				3CCCCD471E557C7B00B0009A /* ViewController.m */,
 				3CCCCD491E557C7B00B0009A /* Main.storyboard */,
 				3CCCCD4C1E557C7B00B0009A /* Assets.xcassets */,
-				3CCCCD4E1E557C7B00B0009A /* LaunchScreen.storyboard */,
 				3CCCCD511E557C7B00B0009A /* Info.plist */,
 				3CCCCD401E557C7A00B0009A /* Supporting Files */,
 			);
@@ -246,7 +243,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3CCCCD501E557C7B00B0009A /* LaunchScreen.storyboard in Resources */,
 				3CCCCD4D1E557C7B00B0009A /* Assets.xcassets in Resources */,
 				3CCCCD4B1E557C7B00B0009A /* Main.storyboard in Resources */,
 			);
@@ -317,14 +313,6 @@
 				3CCCCD4A1E557C7B00B0009A /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		3CCCCD4E1E557C7B00B0009A /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3CCCCD4F1E557C7B00B0009A /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -507,6 +495,7 @@
 				3CCCCD6C1E557C7B00B0009A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3CCCCD6D1E557C7B00B0009A /* Build configuration list for PBXNativeTarget "IOSCustomViewsTests" */ = {
 			isa = XCConfigurationList;
@@ -515,6 +504,7 @@
 				3CCCCD6F1E557C7B00B0009A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3CCCCD701E557C7B00B0009A /* Build configuration list for PBXNativeTarget "IOSCustomViewsUITests" */ = {
 			isa = XCConfigurationList;
@@ -523,6 +513,7 @@
 				3CCCCD721E557C7B00B0009A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
