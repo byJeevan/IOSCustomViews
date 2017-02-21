@@ -7,7 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface CustomePickerView : NSObject
+ @property (strong) NSMutableArray * loadedPickerModelArray;
+-(void) createPickerForTextField:(UITextField *) field;
+-(void) searchString:(NSString *) string;
 
+@property (assign) BOOL isInputKeyboardEnabled;
 @end
