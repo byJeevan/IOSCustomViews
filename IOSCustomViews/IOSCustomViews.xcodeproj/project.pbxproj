@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3C91B15A1E5BF7D000E98A7B /* PickerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C91B1591E5BF7D000E98A7B /* PickerModel.m */; };
+		3C91B15D1E5C69AE00E98A7B /* CustomePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C91B15C1E5C69AE00E98A7B /* CustomePickerView.m */; };
 		3CCCCD421E557C7A00B0009A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CCCCD411E557C7A00B0009A /* main.m */; };
 		3CCCCD451E557C7A00B0009A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CCCCD441E557C7A00B0009A /* AppDelegate.m */; };
 		3CCCCD481E557C7B00B0009A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CCCCD471E557C7B00B0009A /* ViewController.m */; };
@@ -37,6 +38,8 @@
 /* Begin PBXFileReference section */
 		3C91B1581E5BF7D000E98A7B /* PickerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerModel.h; sourceTree = "<group>"; };
 		3C91B1591E5BF7D000E98A7B /* PickerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerModel.m; sourceTree = "<group>"; };
+		3C91B15B1E5C69AE00E98A7B /* CustomePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomePickerView.h; sourceTree = "<group>"; };
+		3C91B15C1E5C69AE00E98A7B /* CustomePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomePickerView.m; sourceTree = "<group>"; };
 		3CCCCD3D1E557C7A00B0009A /* IOSCustomViews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IOSCustomViews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CCCCD411E557C7A00B0009A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3CCCCD431E557C7A00B0009A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -104,6 +107,8 @@
 			children = (
 				3C91B1581E5BF7D000E98A7B /* PickerModel.h */,
 				3C91B1591E5BF7D000E98A7B /* PickerModel.m */,
+				3C91B15B1E5C69AE00E98A7B /* CustomePickerView.h */,
+				3C91B15C1E5C69AE00E98A7B /* CustomePickerView.m */,
 				3CCCCD431E557C7A00B0009A /* AppDelegate.h */,
 				3CCCCD441E557C7A00B0009A /* AppDelegate.m */,
 				3CCCCD461E557C7B00B0009A /* ViewController.h */,
@@ -275,6 +280,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3CCCCD481E557C7B00B0009A /* ViewController.m in Sources */,
+				3C91B15D1E5C69AE00E98A7B /* CustomePickerView.m in Sources */,
 				3CCCCD451E557C7A00B0009A /* AppDelegate.m in Sources */,
 				3CCCCD421E557C7A00B0009A /* main.m in Sources */,
 				3C91B15A1E5BF7D000E98A7B /* PickerModel.m in Sources */,

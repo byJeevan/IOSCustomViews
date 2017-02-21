@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import "PickerModel.h"
 
-@interface ViewController () <UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource> {
+@interface ViewController () <UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UIGestureRecognizerDelegate> {
     UIPickerView *pickerView;
 }
 
@@ -28,7 +28,6 @@
     pickerView =  [[UIPickerView alloc] initWithFrame:CGRectMake(0, 50, 320, 150)];
     pickerView.delegate = self;
     pickerView.dataSource = self;
-    pickerView.hidden = YES;
  
     self.loadedPickerModelArray = [[NSMutableArray alloc] initWithObjects:
                                    [[PickerModel alloc] initWithKey:@"1" andValue:@"One"],
@@ -45,15 +44,40 @@
     
     pickerView.showsSelectionIndicator = YES;
    
-    UITapGestureRecognizer *myGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pickerTapped:)];
-    myGR.numberOfTapsRequired = 1;
-    [pickerView addGestureRecognizer:myGR];
-    
-    
+    UITapGestureRecognizer *tapToSelect = [[UITapGestureRecognizer alloc]initWithTarget:self
+                                                                                 action:@selector(tappedToSelectRow:)];
+    tapToSelect.delegate = self;
+    [pickerView addGestureRecognizer:tapToSelect];
+ 
     self.filteredArray = [NSMutableArray arrayWithArray:self.loadedPickerModelArray];
     
     [self toolBarForPicker];
 }
+
+
+#pragma mark - Actions
+
+- (IBAction)tappedToSelectRow:(UITapGestureRecognizer *)tapRecognizer
+{
+    if (tapRecognizer.state == UIGestureRecognizerStateEnded) {
+        CGFloat rowHeight = [pickerView rowSizeForComponent:0].height;
+        CGRect selectedRowFrame = CGRectInset(pickerView.bounds, 0.0, (CGRectGetHeight(pickerView.frame) - rowHeight) / 2.0 );
+        BOOL userTappedOnSelectedRow = (CGRectContainsPoint(selectedRowFrame, [tapRecognizer locationInView:pickerView]));
+        if (userTappedOnSelectedRow) {
+            NSInteger selectedRow = [pickerView selectedRowInComponent:0];
+            [self pickerView:pickerView didSelectRow:selectedRow inComponent:0];
+        }
+    }
+}
+
+#pragma mark - UIGestureRecognizerDelegate
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    return true;
+}
+
+
 
 -(void)pickerTapped:(id)sender
 {
@@ -88,8 +112,7 @@
     NSString *titleYouWant = [self pickerView:pickerView titleForRow:[pickerView selectedRowInComponent:0] forComponent:0];
     self.textField.text = titleYouWant;
     
-    pickerView.hidden = YES;
-    [self.view endEditing:YES];
+  [self exitPickerInputViewFocused:NO];
     
 }
 
@@ -98,8 +121,20 @@
     
 }
 
--(void) searchString:(NSString *) string {
+-(void) exitPickerInputViewFocused:(BOOL) isFocused {
     
+    if (isFocused) {
+        
+      
+    }
+    else{
+        
+        [self.view endEditing:YES];
+    }
+    
+}
+
+-(void) searchString:(NSString *) string {
     
     if ([string isEqualToString:@""]) {
       
@@ -109,9 +144,7 @@
         return;
     }
     
-    
     [self.filteredArray removeAllObjects];
-    
     
     NSOperationQueue * queueForAutoComplete = [[NSOperationQueue alloc] init];
     
@@ -140,23 +173,17 @@
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             
             if ( self.filteredArray.count < 1) {
-                
-                pickerView.hidden = YES;
+         
                 
             }
             else {
-                pickerView.hidden = NO;
-                
                 [pickerView reloadAllComponents];
                 
             }
             
             if (isStringEqual) {
                 
-                pickerView.hidden = YES;
             }
-            
-          
             
         }];
         
@@ -174,12 +201,11 @@
 }
 
 -(BOOL) textFieldShouldBeginEditing:(UITextField *)textField {
-    pickerView.hidden = NO;
+ 
     return YES;
 }
 
 -(BOOL) textFieldShouldEndEditing:(UITextField *)textField {
-    pickerView.hidden = YES;
     return YES;
 }
 
@@ -219,7 +245,8 @@
     
     PickerModel * model = [self.filteredArray objectAtIndex:row];
     self.textField.text = model.value;
-    [self.view endEditing:YES];
+    
+    [self exitPickerInputViewFocused:NO];
 }
 
 - (void)didReceiveMemoryWarning {
