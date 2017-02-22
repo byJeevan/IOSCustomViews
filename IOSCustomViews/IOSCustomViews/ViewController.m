@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "CustomePickerView.h"
 #import "PickerModel.h"
+#import "DependencyFieldViewController.h"
 
 @interface ViewController () <UITextFieldDelegate> {
     CustomePickerView * customerPicker;
@@ -48,6 +49,14 @@
                                              nil];
     
 }
+
+- (IBAction)buttonAction:(id)sender {
+    
+    
+    [self presentViewController:[DependencyFieldViewController new] animated:NO completion:nil];
+    
+}
+
 
 
 #pragma mark - Text Field
