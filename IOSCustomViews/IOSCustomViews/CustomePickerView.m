@@ -11,7 +11,7 @@
 
 @interface CustomePickerView ()<UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UIGestureRecognizerDelegate> {
     UITextField *pickerTextField;
-    UIPickerView  *pickerView;
+
 }
 
 @property (strong) NSMutableArray * filteredArray;
@@ -24,18 +24,17 @@
     
     pickerTextField = field;
     pickerTextField.delegate = self;
-    pickerView =  [[UIPickerView alloc] initWithFrame:CGRectMake(0, 50, 320, 150)];
-    pickerView.delegate = self;
-    pickerView.dataSource = self;
-    pickerView.showsSelectionIndicator = YES;
+    self.pickerView =  [[UIPickerView alloc] initWithFrame:CGRectMake(0, 50, 320, 150)];
+    self.pickerView.delegate = self;
+    self.pickerView.dataSource = self;
+    self.pickerView.showsSelectionIndicator = YES;
     
     UITapGestureRecognizer *tapToSelect = [[UITapGestureRecognizer alloc]initWithTarget:self
-                                                                                 action:@selector(tappedToSelectRow:)];
+                                                                                action:@selector(tappedToSelectRow:)];
     tapToSelect.delegate = self;
-    [pickerView addGestureRecognizer:tapToSelect];
-    
+    [self.pickerView addGestureRecognizer:tapToSelect];
     self.filteredArray = [NSMutableArray arrayWithArray:self.loadedPickerModelArray];
-    
+    self.pickerView.hidden = YES;
     [self toolBarForPicker];
 
 }
@@ -45,12 +44,13 @@
 - (IBAction)tappedToSelectRow:(UITapGestureRecognizer *)tapRecognizer
 {
     if (tapRecognizer.state == UIGestureRecognizerStateEnded) {
-        CGFloat rowHeight = [pickerView rowSizeForComponent:0].height;
-        CGRect selectedRowFrame = CGRectInset(pickerView.bounds, 0.0, (CGRectGetHeight(pickerView.frame) - rowHeight) / 2.0 );
-        BOOL userTappedOnSelectedRow = (CGRectContainsPoint(selectedRowFrame, [tapRecognizer locationInView:pickerView]));
+        CGFloat rowHeight = [self.pickerView rowSizeForComponent:0].height;
+        CGRect selectedRowFrame = CGRectInset(self.pickerView.bounds, 0.0, (CGRectGetHeight(self.pickerView.frame) - rowHeight) / 2.0 );
+        BOOL userTappedOnSelectedRow = (CGRectContainsPoint(selectedRowFrame, [tapRecognizer locationInView:self.pickerView]));
         if (userTappedOnSelectedRow) {
-            NSInteger selectedRow = [pickerView selectedRowInComponent:0];
-            [self pickerView:pickerView didSelectRow:selectedRow inComponent:0];
+            NSInteger selectedRow = [self.pickerView selectedRowInComponent:0];
+            [self pickerView:self.pickerView didSelectRow:selectedRow inComponent:0];
+            [self exitPickerView];
         }
     }
 }
@@ -90,12 +90,12 @@
     if (self.isInputKeyboardEnabled) {
         pickerTextField.inputView =  UIKeyboardTypeDefault;
        
-        [pickerTextField.superview addSubview:pickerView];
+        [pickerTextField.superview addSubview:self.pickerView];
         
     }
     else{
         
-        pickerTextField.inputView =  pickerView;
+        pickerTextField.inputView =  self.pickerView;
         
         pickerTextField.inputAccessoryView = toolBar;
     }
@@ -104,19 +104,14 @@
 
 -(void) done {
     
-    NSString *titleYouWant = [self pickerView:pickerView titleForRow:[pickerView selectedRowInComponent:0] forComponent:0];
-    pickerTextField.text = titleYouWant;
-    
     [self exitPickerView];
-    
 }
 
 -(void) exitPickerView {
     
     if (self.isInputKeyboardEnabled) {
-//        [pickerView removeFromSuperview];
         
-        pickerView.hidden = YES;
+        self.pickerView.hidden = YES;
     }
     else{
         
@@ -128,7 +123,7 @@
 
 -(void) startPickerView {
     
-    pickerView.hidden = NO;
+    self.pickerView.hidden = NO;
 }
 
 -(void) searchString:(NSString *) string {
@@ -138,7 +133,7 @@
     if ([string isEqualToString:@""]) {
         
         self.filteredArray = [[NSMutableArray alloc] initWithArray:self.loadedPickerModelArray];
-        [pickerView reloadAllComponents];
+        [self.pickerView reloadAllComponents];
         
         return;
     }
@@ -177,7 +172,7 @@
                 
             }
             else {
-                [pickerView reloadAllComponents];
+                [self.pickerView reloadAllComponents];
                 
             }
             
@@ -236,16 +231,30 @@
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     
-    PickerModel * model = [self.filteredArray objectAtIndex:row];
-    return model.value;
+    if (self.filteredArray.count > 0) {
+        
+        PickerModel * model = [self.filteredArray objectAtIndex:row];
+        
+        return model.value;
+        
+    }
+ 
+    return @"";
 }
 
 -(void) pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     
-    PickerModel * model = [self.filteredArray objectAtIndex:row];
-    pickerTextField.text = model.value;
-    
-   
+    if (self.filteredArray.count > 0) {
+        
+        PickerModel * model = [self.filteredArray objectAtIndex:row];
+        
+        pickerTextField.text = model.value;
+    }
+    else {
+        pickerTextField.text =  @"";
+        
+    }
+   
 }
 
 @end

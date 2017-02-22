@@ -10,9 +10,11 @@
 #import <UIKit/UIKit.h>
 
 @interface CustomePickerView : NSObject
- @property (strong) NSMutableArray * loadedPickerModelArray;
+
 -(void) createPickerForTextField:(UITextField *) field;
 -(void) searchString:(NSString *) string;
 
 @property (assign) BOOL isInputKeyboardEnabled;
+@property (strong,nonatomic) UIPickerView * pickerView;
+ @property (strong,nonatomic) NSMutableArray * loadedPickerModelArray;
 @end

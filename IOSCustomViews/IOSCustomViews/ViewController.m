@@ -26,23 +26,26 @@
     [super viewDidLoad];
     
     customerPicker = [CustomePickerView new];
-    customerPicker.isInputKeyboardEnabled = NO;
+    customerPicker.isInputKeyboardEnabled = YES;
     self.textField.delegate = self;
-
-    customerPicker.loadedPickerModelArray = [[NSMutableArray alloc] initWithObjects:
-                                   [[PickerModel alloc] initWithKey:@"1" andValue:@"One"],
-                                   [[PickerModel alloc] initWithKey:@"2" andValue:@"Two"],
-                                   [[PickerModel alloc] initWithKey:@"3" andValue:@"Three"],
-                                   [[PickerModel alloc] initWithKey:@"4" andValue:@"Four"],
-                                   [[PickerModel alloc] initWithKey:@"5" andValue:@"Five"],
-                                   [[PickerModel alloc] initWithKey:@"6" andValue:@"Six"],
-                                   [[PickerModel alloc] initWithKey:@"7" andValue:@"Seven"],
-                                   [[PickerModel alloc] initWithKey:@"8" andValue:@"Eight"],
-                                   [[PickerModel alloc] initWithKey:@"9" andValue:@"Nine"],
-                                   nil];
-    
-    
+    [self setModelArray];
     [customerPicker createPickerForTextField:self.textField];
+    customerPicker.pickerView.backgroundColor = [UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:0.9];
+}
+
+-(void) setModelArray {
+    
+    customerPicker.loadedPickerModelArray = [[NSMutableArray alloc] initWithObjects:
+                                             [[PickerModel alloc] initWithKey:@"1" andValue:@"One"],
+                                             [[PickerModel alloc] initWithKey:@"2" andValue:@"Two"],
+                                             [[PickerModel alloc] initWithKey:@"3" andValue:@"Three"],
+                                             [[PickerModel alloc] initWithKey:@"4" andValue:@"Four"],
+                                             [[PickerModel alloc] initWithKey:@"5" andValue:@"Five"],
+                                             [[PickerModel alloc] initWithKey:@"6" andValue:@"Six"],
+                                             [[PickerModel alloc] initWithKey:@"7" andValue:@"Seven"],
+                                             [[PickerModel alloc] initWithKey:@"8" andValue:@"Eight"],
+                                             [[PickerModel alloc] initWithKey:@"9" andValue:@"Nine"],
+                                             nil];
     
 }
 
@@ -53,19 +56,6 @@
     [self.view endEditing:YES];
     
     return YES;
-}
-
--(BOOL) textFieldShouldBeginEditing:(UITextField *)textField {
- 
-    return YES;
-}
-
--(BOOL) textFieldShouldEndEditing:(UITextField *)textField {
-    return YES;
-}
-
--(void)textFieldDidBeginEditing:(UITextField *)textField{
- 
 }
 
 -(BOOL) textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
