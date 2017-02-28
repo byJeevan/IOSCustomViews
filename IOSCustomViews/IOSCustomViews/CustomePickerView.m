@@ -172,7 +172,8 @@
                 
             }
             else {
-                [self.pickerView reloadAllComponents];
+                
+                [self reloadPickerView];
                 
             }
             
@@ -187,6 +188,11 @@
     
 }
 
+-(void) reloadPickerView {
+     self.filteredArray = [NSMutableArray arrayWithArray:self.loadedPickerModelArray];
+    [self.pickerView reloadAllComponents];
+    
+}
 
 #pragma mark - Text Field
 -(BOOL) textFieldShouldReturn:(UITextField *)textField {
@@ -202,6 +208,8 @@
 }
 
 -(BOOL) textFieldShouldEndEditing:(UITextField *)textField {
+    
+    
     return YES;
 }
 
@@ -230,7 +238,7 @@
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    
+ 
     if (self.filteredArray.count > 0) {
         
         PickerModel * model = [self.filteredArray objectAtIndex:row];
@@ -249,9 +257,15 @@
         PickerModel * model = [self.filteredArray objectAtIndex:row];
         
         pickerTextField.text = model.value;
+        
+        [self.delegate didSelectedValue:model.value ofKey:model.key];
+        
     }
     else {
         pickerTextField.text =  @"";
+        
+        
+        [self.delegate didSelectedValue:@"" ofKey:@""];
         
     }
    

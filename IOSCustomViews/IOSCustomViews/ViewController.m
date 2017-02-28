@@ -13,11 +13,9 @@
 
 @interface ViewController () <UITextFieldDelegate> {
     CustomePickerView * customerPicker;
-    NSMutableArray * inputArray;
 }
 
 @property (weak, nonatomic) IBOutlet UITextField *textField;
-
 
 @end
 

@@ -58,7 +58,7 @@
 		3CCCCD651E557C7B00B0009A /* IOSCustomViewsUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IOSCustomViewsUITests.m; sourceTree = "<group>"; };
 		3CCCCD671E557C7B00B0009A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3CD06F081E5DA52F001812F8 /* DependencyFieldViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DependencyFieldViewController.h; sourceTree = "<group>"; };
-		3CD06F091E5DA52F001812F8 /* DependencyFieldViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DependencyFieldViewController.m; sourceTree = "<group>"; };
+		3CD06F091E5DA52F001812F8 /* DependencyFieldViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = DependencyFieldViewController.m; sourceTree = "<group>"; };
 		3CD06F0A1E5DA52F001812F8 /* DependencyFieldViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DependencyFieldViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -110,20 +110,11 @@
 		3CCCCD3F1E557C7A00B0009A /* IOSCustomViews */ = {
 			isa = PBXGroup;
 			children = (
-				3C91B1581E5BF7D000E98A7B /* PickerModel.h */,
-				3C91B1591E5BF7D000E98A7B /* PickerModel.m */,
 				3C91B15B1E5C69AE00E98A7B /* CustomePickerView.h */,
 				3C91B15C1E5C69AE00E98A7B /* CustomePickerView.m */,
-				3CCCCD431E557C7A00B0009A /* AppDelegate.h */,
-				3CCCCD441E557C7A00B0009A /* AppDelegate.m */,
-				3CCCCD461E557C7B00B0009A /* ViewController.h */,
-				3CCCCD471E557C7B00B0009A /* ViewController.m */,
 				3CD06F081E5DA52F001812F8 /* DependencyFieldViewController.h */,
 				3CD06F091E5DA52F001812F8 /* DependencyFieldViewController.m */,
 				3CD06F0A1E5DA52F001812F8 /* DependencyFieldViewController.xib */,
-				3CCCCD491E557C7B00B0009A /* Main.storyboard */,
-				3CCCCD4C1E557C7B00B0009A /* Assets.xcassets */,
-				3CCCCD511E557C7B00B0009A /* Info.plist */,
 				3CCCCD401E557C7A00B0009A /* Supporting Files */,
 			);
 			path = IOSCustomViews;
@@ -132,7 +123,16 @@
 		3CCCCD401E557C7A00B0009A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3CCCCD431E557C7A00B0009A /* AppDelegate.h */,
+				3CCCCD441E557C7A00B0009A /* AppDelegate.m */,
+				3CCCCD461E557C7B00B0009A /* ViewController.h */,
+				3CCCCD471E557C7B00B0009A /* ViewController.m */,
+				3C91B1581E5BF7D000E98A7B /* PickerModel.h */,
+				3C91B1591E5BF7D000E98A7B /* PickerModel.m */,
 				3CCCCD411E557C7A00B0009A /* main.m */,
+				3CCCCD491E557C7B00B0009A /* Main.storyboard */,
+				3CCCCD4C1E557C7B00B0009A /* Assets.xcassets */,
+				3CCCCD511E557C7B00B0009A /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
