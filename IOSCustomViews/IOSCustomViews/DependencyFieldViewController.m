@@ -12,20 +12,20 @@
 #import "CustomePickerView.h"
 #import "PickerModel.h"
 
-@interface DependencyFieldViewController ()<UITextFieldDelegate, customePickerViewDelegates> {
+@interface DependencyFieldViewController ()<customePickerViewDelegates> {
     CustomePickerView * contryPicker;
     CustomePickerView * statePicker;
     
-    
 }
-@property (weak, nonatomic) IBOutlet UITextField *firstField;
-@property (weak, nonatomic) IBOutlet UITextField *secondField;
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView * activityIndicator;
-@end
+    @property (weak, nonatomic) IBOutlet UITextField *firstField;
+    @property (weak, nonatomic) IBOutlet UITextField *secondField;
+    @property (weak, nonatomic) IBOutlet UIActivityIndicatorView * activityIndicator;
+    @end
 
 @implementation DependencyFieldViewController
-
+    
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     
     self.activityIndicator.hidesWhenStopped = YES;
@@ -33,20 +33,8 @@
     
     //Country
     contryPicker = [CustomePickerView new];
-    self.firstField.delegate = self;
+    contryPicker.isInputKeyboardEnabled = YES;
     contryPicker.delegate = self;
-    [self setModelCountryArray];
-    [contryPicker createPickerForTextField:self.firstField];
-    
-    //State
-    statePicker = [CustomePickerView new];
-    self.secondField.delegate = self;
-    self.secondField.enabled  = NO;
-    [statePicker createPickerForTextField:self.secondField];
-}
-
--(void) setModelCountryArray {
-    
     contryPicker.loadedPickerModelArray = [[NSMutableArray alloc] initWithObjects:
                                            
                                            [[PickerModel alloc] initWithKey:@"1" andValue:@"USA"],
@@ -58,43 +46,35 @@
                                            [[PickerModel alloc] initWithKey:@"7" andValue:@"RUS"],
                                            [[PickerModel alloc] initWithKey:@"8" andValue:@"JPN"],
                                            [[PickerModel alloc] initWithKey:@"9" andValue:@"SRL"],
-                                           [[PickerModel alloc] initWithKey:@"10" andValue:@""],
                                            
                                            nil];
-}
-
--(void) didSelectedValue:(NSString *) value ofKey:(NSString *)key {
+    [contryPicker createPickerForTextField:self.firstField];
     
-    [self setModelStateArrayForCountryCode:value];
+    //State
+    statePicker = [CustomePickerView new];
+    self.secondField.enabled  = NO;
+    [statePicker createPickerForTextField:self.secondField];
+}
+    
+ 
+-(void)customPickerView:(CustomePickerView *)pickerView selectedPickerModel:(PickerModel *)model {
+    
+    [self setModelStateArrayForCountryCode:model.value];
     self.secondField.enabled = YES;
 }
-
+    
+    
+    //Private methods.
 - (IBAction)exitButtonAction:(id)sender {
     
     [self dismissViewControllerAnimated:NO completion:nil];
 }
-
+    
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-#pragma mark - Text Field
--(BOOL) textFieldShouldReturn:(UITextField *)textField {
     
-    [self.view endEditing:YES];
-    return YES;
-}
-
--(BOOL) textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    
-    //    NSString * newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
-    //    [customerPicker searchString:newString];
-    
-    return YES;
-}
-
-
 
 -(void) setModelStateArrayForCountryCode:(NSString *) countryCode {
     
@@ -124,26 +104,26 @@
     }];
     
 }
-
--(void)getJsonResponse:(NSString *)urlStr success:(void (^)(NSDictionary *responseDict))success failure:(void(^)(NSError* error))failure
-{
-    NSURLSession *session = [NSURLSession sharedSession];
-    NSURL *url = [NSURL URLWithString:urlStr];
     
-    // Asynchronously API is hit here
-    NSURLSessionDataTask *dataTask = [session dataTaskWithURL:url
-                                            completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                                                //NSLog(@"%@",data);
-                                                if (error)
+-(void)getJsonResponse:(NSString *)urlStr success:(void (^)(NSDictionary *responseDict))success failure:(void(^)(NSError* error))failure
+    {
+        NSURLSession *session = [NSURLSession sharedSession];
+        NSURL *url = [NSURL URLWithString:urlStr];
+        
+        // Asynchronously API is hit here
+        NSURLSessionDataTask *dataTask = [session dataTaskWithURL:url
+                                                completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                                                    //NSLog(@"%@",data);
+                                                    if (error)
                                                     failure(error);
-                                                else {
-                                                    NSDictionary *json  = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-                                                    //NSLog(@"%@",json);
-                                                    success(json);
-                                                }
-                                            }];
-    [dataTask resume];    // Executed First
-}
-
-
-@end
+                                                    else {
+                                                        NSDictionary *json  = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+                                                        //NSLog(@"%@",json);
+                                                        success(json);
+                                                    }
+                                                }];
+        [dataTask resume];    // Executed First
+    }
+    
+    
+    @end

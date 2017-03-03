@@ -14,7 +14,6 @@
 -(instancetype) initWithKey:(NSString *) key andValue:(NSString *) value {
     
     if (self = [super init]) {
-    
         self.key = key;
         self.value = value;
     }
